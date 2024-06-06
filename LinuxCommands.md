@@ -3,7 +3,7 @@
 `grep <keyword> <file_name.txt>`
 `cat <file_name.txt> | grep <keyword>`
 `grep <keyword> *.txt`
-`grep <keyword> *.txt` -vc
+`grep <keyword> *.txt -vc`
 `grep -x <div> *.txt`
 `grep '\biv' *.txt`
 `grep -w <iv> *.txt`

@@ -26,10 +26,10 @@
 
 
 ### 2. RegEx
-- $cat example.txt | grep '^keyword'
-- $cat example.txt | grep 'keyword$'
-- $cat example.txt | grep '^keyword$'
-- $grep -E '([0-9]{3}\.){3}[0-9]{1,3}' 'logs.txt'
+- `$cat example.txt | grep '^keyword'`
+- `$cat example.txt | grep 'keyword$'`
+- `$cat example.txt | grep '^keyword$'`
+- `$grep -E '([0-9]{3}\.){3}[0-9]{1,3}' 'logs.txt'`
 
 ##### Flags:
 * `^`			# Matches START of the line

@@ -1,15 +1,16 @@
 
 ### 1. `grep` command
-`grep <keyword> <file_name.txt>`
-`cat <file_name.txt> | grep <keyword>`
-`grep <keyword> *.txt`
-`grep <keyword> *.txt -vc`
-`grep -x <div> *.txt`
-`grep '\biv' *.txt`
-`grep -w <iv> *.txt`
-`grep -w B 3 <iv> *.txt`
-`grep -w A 3 <iv> *.txt`
+- `grep <keyword> <file_name.txt>`
+- `cat <file_name.txt> | grep <keyword>`
+- `grep <keyword> *.txt`
+- `grep <keyword> *.txt -vc`
+- `grep -x <div> *.txt`
+- `grep '\biv' *.txt`
+- `grep -w <iv> *.txt`
+- `grep -w B 3 <iv> *.txt`
+- `grep -w A 3 <iv> *.txt`
 
+##### Flags:
 * -v		# Prints all lines that do NOT match pattern.
 * -n		# Prints the matched line and its line number.
 * -l		# Prints only the names of files with matching lines
@@ -30,7 +31,7 @@ $cat example.txt | grep 'keyword$'
 $cat example.txt | grep '^keyword$'
 $grep -E '([0-9]{3}\.){3}[0-9]{1,3}' 'logs.txt'
 
-
+##### Flags:
 * ^			# Matches START of the line
 * $			# Matches END of the line
 * I			# OR

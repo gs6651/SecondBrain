@@ -196,7 +196,8 @@ Network management protocol to manage remote configurations. It works on the RPC
 - NAT Detection
 - All Cisco SD-WAN devices have an embedded STUN client and the Validator orchestrator acts as a STUN Server (Session Traversal Utilities for NAT).
 
-### NAT Types:
+#### NAT Types:
+
 - **Full-Cone NAT:** A full-cone is one where all packets from the same internal IP address are mapped to the same NAT IP address. External hosts can send packets to the internal host, by sending packets to the mapped NAT IP address. In other words, One-to-One NAT.
 - **Restricted-Cone NAT:** Same as Full-Cone NAT, only difference is that an external host can send packets to the internal host only if the internal host had previously sent a packet to that IP address. Once the NAT mapping state is created, the external destination can communicate back to the internal host on any port. It is also known as Address-Restricted-Cone.
 - **Port-Restricted-Cone NAT:** Same as Restricted-Cone NAT, but the restriction also includes port numbers. The difference is that an external destination can send back packets to the internal host only if the internal host had previously sent a packet to this destination on this exact port number. It is known as Port Address Translation (PAT).
@@ -204,12 +205,11 @@ Network management protocol to manage remote configurations. It works on the RPC
 - Recommendation is to have Full-Cone NAT at the Hubs, DC, DR sites.
 - In GRE tunnels, any type of NAT with port overloading is not supported since GRE packets lack an L4 header.
 
-- Loopback TLOC: When loopback interface is used as local TLOC endpoint.
-  
+* Loopback TLOC: When loopback interface is used as local TLOC endpoint.
   - Standard Mode: Loopback interface bound to multiple physical interfaces. The service provider network must have IP reach-ability to the loopback IP. Tunnel config would be done under loopback instead of physical interface.
-  - Bind Mode: Loopback interface is strictly bound to a single physical link. Used when the last mile provider assigns an IP address to the WAN link, and this IP is filtered within the MPLS cloud or in another transit WAN along the way. Command is:  bind <interface>.
+  - Bind Mode: Loopback interface is strictly bound to a single physical link. Used when the last mile provider assigns an IP address to the WAN link, and this IP is filtered within the MPLS cloud or in another transit WAN along the way. Command is:  `bind <interface>`.
 
-# Policies2
+# Policies
 
 #### Structure of Policy
 

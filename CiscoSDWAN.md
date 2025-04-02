@@ -62,7 +62,7 @@
 
 - Where LAN is connected
 - Ranges between 1 -to- 65530 (except 512, reserved for OOBM). Depending on hardware or license can support a limited number of service VPNs.
-- E.g., Data users in VPN10, Voice Users in VPN11. It's a kind of segments in the VeloCloud world.
+- E.g., Data users in VPN 10, Voice Users in VPN 11. It's a kind of segments in the VeloCloud world.
 
 #### Transport Side
 

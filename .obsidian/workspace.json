@@ -11,10 +11,14 @@
             "id": "1fc0076f7bf497e8",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "CiscoSDWAN.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "CiscoSDWAN"
             }
           }
         ]
@@ -163,6 +167,8 @@
   },
   "active": "1fc0076f7bf497e8",
   "lastOpenFiles": [
+    "fedora.md",
+    "CiscoSDWAN.md",
     "Networking/CiscoSDWAN.md"
   ]
 }

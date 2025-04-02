@@ -209,7 +209,7 @@ Network management protocol to manage remote configurations. It works on the RPC
   - Standard Mode: Loopback interface bound to multiple physical interfaces. The service provider network must have IP reach-ability to the loopback IP. Tunnel config would be done under loopback instead of physical interface.
   - Bind Mode: Loopback interface is strictly bound to a single physical link. Used when the last mile provider assigns an IP address to the WAN link, and this IP is filtered within the MPLS cloud or in another transit WAN along the way. Command is:  bind <interface>.
 
-# Policies
+# Policies2
 
 #### Structure of Policy
 

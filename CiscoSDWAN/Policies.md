@@ -5,7 +5,7 @@
 - **Step #2: Definition:** What Action. Here we *match* everything defined in step #1 as per our need and accordingly *action* will be taken on it.
 - **Step #3: Application:** Where to apply policy. (in-bound or out-bound)
 
-> Manager will push centralized policy to Controller via NETCONF transaction. Then further, policy itself won't be pushed to the WAN edge devices, only the results of the policy (after processing by Controller) are advertised via OMP to the overlay.    
+> 	Manager will push centralized policy to Controller via NETCONF transaction. Then further, policy itself won't be pushed to the WAN edge devices, only the results of the policy (after processing by Controller) are advertised via OMP to the overlay. 
 
 #### Centralized policies
 

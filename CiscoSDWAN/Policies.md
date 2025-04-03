@@ -14,7 +14,7 @@
 - One type of policy can be applied to a site-list. For example, one control-policy in and one control-policy out but not two control policies in the outbound direction.
 - Cisco does not recommend including a site in more than one site-list. Doing this may result in unpredictable behavior of the policies applied to these site-lists.
 - The direction of the policy is always **from the perspective of the Controller controller**.
-  - Outbound means Controller to WAN Edges and does ***not*** affect the best path selection process and influences only the specific edges in the contorl policy's site list.
+  - Outbound means Controller to WAN Edges and does ***not*** affect the best path selection process and influences only the specific edges in the control policy's site list.
   - Inbound means WAN Edges to Controller and it will modifies the attributes in OMP updates before routing information enters the RIB of Controller. It affects the complete overlay fabric.
 - **Centralized-*Control*-policy** is use to influence 'route' & 'TLOC' between Controller & WAN edges. It is unidirectional which means it will be applied either inbound or outbound. For example, If we need to manipulate OMP routes that the controller sends and receives, we must configure two control policies. It's of two types:
 	- *Topology Policies:* To limit the number of overlay tunnels between sites and controlling the overlay topology.

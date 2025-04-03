@@ -16,12 +16,12 @@
 - Can be a Virtual Device (VM), On-Prem or Cloud Installation
 - It’s a single pane of glass for Day0, Day1 & Day2 operations.
 - It does:
-  - Centralized Provisioning
-  - Policies & Templates
-  - Troubleshooting & Monitoring
-  - Software Upgrades
-- It does not establish OMP tunnels with WAN Edges.
-- To push config to WAN Edges, it uses NETCONF APIs over DTLS Tunnels.
+	- Centralized Provisioning
+	- Policies & Templates
+	- Troubleshooting & Monitoring
+	- Software Upgrades
+	- Establishes DTLS tunnels with WAN Edges (not the OMP Tunnels)
+- To push config (especially Policies) to WAN Edges, it uses NETCONF APIs over DTLS Tunnels.
 - Validator is also configured via Manager. 💪
 
 #### Analytics (vAnalytics)
@@ -33,7 +33,7 @@
 #### Controller (vSmart)
 
 - Control Plane. Brain of the SD-WAN.
-- Distributes control plane information to the WAN Edges using OMP. Also implements control plane policies such as service-chaining, multi-topology and multi-hop.
+- Distributes control plane information to the WAN Edges using OMP tunnels. Also implements control plane policies such as service-chaining, multi-topology and multi-hop.
 - Distributes data plane and app aware routing policies to the WAN Edges.
 - All the policies are defined centrally on Manager and distributed to WAN Edges using Controller.
 - Controller does not store policies locally, it only loads the currently active policy in its running-configuration.

@@ -1,14 +1,14 @@
-`BGP is NOT a routing protocol, but an application. Used to exchange NLRI.`
+> BGP is an application and NOT a routing protocol. Used to exchange NLRI.
 
-IPv4 NLRI contains:
+**IPv4 NLRI contains:**
 • Prefix/Length
 	• Attributes
 		○ Local Preference
 		○ AS-Path
 		○ Etc.
 	• Next Hop
-	
-BGP Message Format:
+
+**BGP Message Format:**
 - 19 bytes -to- 4096 bytes
 - 19 bytes = Header
 - 16 bytes = Marker
@@ -23,7 +23,7 @@ BGP Message Format:
 
 
 
-Messages Types:
+**Messages Types:**
 - OPEN: Version No. (3 or 4)
 - AS No. (contains Local AS no.)
 - Hold Time

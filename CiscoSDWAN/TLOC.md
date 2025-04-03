@@ -1,17 +1,17 @@
 
-- Transport Locator
+- Transport Locator. Data-Plane attachment point
 - Collection of entities making up a transport side connection. Think of it as a identity card given to WAN interfaces, it uniquely identifies with tuple of three values:
-  - System-IP: It’s similar to router-ID and does not need to be route-able or reachable across the fabric
-  - Transport Color: Interface identifier on local WAN Edge. One color for MPLS and other one for Internet etc.
-  - Encapsulation: The type of encapsulation this TLOC uses - IPsec or GRE.
+	- *System-IP:* It’s similar to router-ID and does not need to be route-able or reachable across the fabric
+	- *Transport Color:* Interface identifier on local WAN Edge. One color for MPLS and other one for Internet etc.
+	- *Encapsulation:* The type of encapsulation this TLOC uses - IPsec or GRE.
 - Transport interfaces (ones with TLOC configuration) do not forward traffic. They only serve as tunnel endpoints for the overlay tunnels
 - TLOC Restrict: To restrict tunnels within same color
 - TLOC Carrier: Between two clouds
 - Tunnel Group:
-  - Only one interface can be marked with a particular color per WAN edge router. That's a limitation of color, and Tunnel Group comes into picture.
-  - TLOCs can only establish tunnels with remote TLOCs with the same tunnel-group IDs irrespective of the TLOC color.
-  - TLOCs with any tunnel-group ID will also form tunnels with TLOCs that have no tunnel-group IDs assigned.
-  - If the restrict-option is configured in conjunction with the tunnel-group option, then TLOCs will only form an overlay tunnel to remote TLOCs having the same tunnel-group ID and TLOC color.
+	- Only one interface can be marked with a particular color per WAN edge router. That's a limitation of color, and Tunnel Group comes into picture.
+	- TLOCs can only establish tunnels with remote TLOCs with the same tunnel-group IDs irrespective of the TLOC color.
+	- TLOCs with any tunnel-group ID will also form tunnels with TLOCs that have no tunnel-group IDs assigned.
+	- If the restrict-option is configured in conjunction with the tunnel-group option, then TLOCs will only form an overlay tunnel to remote TLOCs having the same tunnel-group ID and TLOC color.
 - NAT Detection
 - All Cisco SD-WAN devices have an embedded STUN client and the Validator orchestrator acts as a STUN Server (Session Traversal Utilities for NAT).
 

@@ -4,7 +4,7 @@
 
 - This device acts as an 'authenticator'. Think of it as a Gatekeeper (Bar Analogy).
 - Orchestrates control & management plane
-- WAN Edges are pre-configured with Validator IPs. It exchanges certificates with WAN Edges. After successful authentication, shares the IPs of Manager & Controller.
+- WAN Edges are preconfigured with Validator IPs. It exchanges certificates with WAN Edges. After successful authentication, shares the IPs of Manager & Controller.
 - Requires public IP reach-ability. Could sit behind 1:1 NAT.
 - Highly resilient.
 - Between Validator & WAN Edge there is a dynamic DTLS tunnel, which goes down after successful authentication.
@@ -228,7 +228,9 @@ Network management protocol to manage remote configurations. It works on the RPC
 - The direction of the policy is always **from the perspective of the Controller controller**.
   - Outbound means Controller to WAN Edges and does ***not*** affect the best path selection process and influences only the specific edges in the contorl policy's site list.
   - Inbound means WAN Edges to Controller and it will modifies the attributes in OMP updates before routing information enters the RIB of Controller. It affects the complete overlay fabric.
-- **Centralized-*Control*-policy** is unidirectional applied either inbound or outbound. For example, If we need to manipulate OMP routes that the controller sends and receives, we must configure two control policies.
+- **Centralized-*Control*-policy** is use to influence 'route' & 'TLOC' between Controller & WAN edges. It is unidirectional which means it will be applied either inbound or outbound. For example, If we need to manipulate OMP routes that the controller sends and receives, we must configure two control policies. It's of two types:
+	- *Topology Policies:* To limit the number of overlay tunnels between sites and controlling the overlay topology.
+	- *VPN Membership Policies:* To control the distribution of routing information for specific VPNs. A typical use-case is for creating guest networks that have Internet access but site-to-site communication is restricted.
 - **Centralized-*Data*-policy** is directional and can be applied either to the traffic received from the service side of the WAN Edge router, traffic received from the transport side, or both.
 - VPN membership policy is always applied to traffic outbound from the Controller controller.
 

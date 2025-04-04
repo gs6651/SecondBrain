@@ -60,28 +60,28 @@
 
 ## OMP Best-Path Selection
 
-- *Route State:* A route is ACTIVE when there is an OMP session in UP state. A route is STALE when the OMP session with the peer is in GRACEFUL RESTART mode
-- *Route Resolve-ability:* Valid & Reachable next-hop TLOC
-- *Admin Distance:* (WAN Edge Only). Locally significant. OMP has AD of 250 on WAN Edges (Viptela) and 251 on WAN Edges (Cisco). AD is not a parameter in OMP, is not advertised, and does not influence Controller.
-- Route Preference: Higher is better. Default is 0.
-- *TLOC Preference:* (WAN Edge Only). TLOC routes are *not* bound to VPN-ID. Therefore, changing the TLOC preference affects WAN Edges path selection for all VPNs.
-- *Origin:*
-  - Connected
-  - Static
-  - EIGRP summary
-  - eBGP
-  - OSPF intra-area
-  - OSPF inter-area
-  - IS-IS level 1
-  - EIGRP external
-  - OSPF external
-  - IS-IS level 2
-  - iBGP
-  - Unknown
-- *Origin Metric:* If Origin type is same, select the route with lower origin metric
-- *Tiebreaker 1 (Source Preference):* Controller only. Prefer WAN Edge sourced routes over Controller sourced
-- *Tiebreaker 2 (System IP):* Select the routes that have the lowest router-id (System-IP).
-- *Tiebreaker 3 (Private TLOC IP):* For routes coming from the same WAN Edge, prefer the ones with a lower private TLOC IP address.
+1. *Route State:* A route is ACTIVE when there is an OMP session in UP state. A route is STALE when the OMP session with the peer is in GRACEFUL RESTART mode
+2. *Route Resolve-ability:* Valid & Reachable next-hop TLOC
+3. *Admin Distance:* (WAN Edge Only). Locally significant. OMP has AD of 250 on WAN Edges (Viptela) and 251 on WAN Edges (Cisco). AD is not a parameter in OMP, is not advertised, and does not influence Controller.
+4. Route Preference: Higher is better. Default is 0.
+5. *TLOC Preference:* (WAN Edge Only). TLOC routes are *not* bound to VPN-ID. Therefore, changing the TLOC preference affects WAN Edges path selection for all VPNs.
+6. *Origin:*
+   1. Connected
+   2. Static
+   3. EIGRP summary
+   4. eBGP
+   5. OSPF intra-area
+   6. OSPF inter-area
+   7. IS-IS level 1
+   8. EIGRP external
+   9. OSPF external
+   10. IS-IS level 2
+   11. iBGP
+   12. Unknown
+7. *Origin Metric:* If Origin type is same, select the route with lower origin metric
+8. *Tiebreaker 1 (Source Preference):* Controller only. Prefer WAN Edge sourced routes over Controller sourced
+9. *Tiebreaker 2 (System IP):* Select the routes that have the lowest router-id (System-IP).
+10. *Tiebreaker 3 (Private TLOC IP):* For routes coming from the same WAN Edge, prefer the ones with a lower private TLOC IP address.
 
 ## OMP Graceful Restart
 

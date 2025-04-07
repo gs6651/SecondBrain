@@ -11,3 +11,5 @@ ssh-add ~/.ssh/id_ed25519
 3. `sudo dnf install google-chrome-stable_current_x86_64.rpm`
 
 
+### Resolve
+sudo dnf install libxcrypt-compat

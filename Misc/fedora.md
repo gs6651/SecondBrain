@@ -13,3 +13,12 @@ ssh-add ~/.ssh/id_ed25519
 
 ### Resolve
 sudo dnf install libxcrypt-compat
+
+
+### Apps Needed
+1. VLC
+2. GIMP
+3. Openshot
+4. Audacity
+5. Chrome
+6. 

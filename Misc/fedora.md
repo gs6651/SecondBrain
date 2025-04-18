@@ -16,9 +16,16 @@ sudo dnf install libxcrypt-compat
 
 
 ### Apps Needed
-1. VLC
+1. VLC from "Flathub"
 2. GIMP
-3. Openshot
+3. KdenLive
 4. Audacity
 5. Chrome
 6. 
+
+
+### To check the hostname & other system details
+`hostnamectl`
+`sudo hostnamectl set-hostname --static "NewHostname"`
+
+

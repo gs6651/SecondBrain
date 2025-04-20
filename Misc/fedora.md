@@ -6,9 +6,7 @@
 
 
 ### Add SSH private key to the ssh-agent
-```shell
-ssh-add ~/.ssh/id_ed25519
-```
+`ssh-add ~/.ssh/id_ed25519`
 
 ### Google Chrome
 

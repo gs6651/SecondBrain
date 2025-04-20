@@ -25,7 +25,7 @@
 
 
 ### To check the hostname & other system details
-`hostnamectl`
-`sudo hostnamectl set-hostname --static "NewHostname"`
+- `hostnamectl`
+- `sudo hostnamectl set-hostname --static "NewHostname"`
 
 

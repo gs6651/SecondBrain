@@ -1,4 +1,9 @@
 
+Data Formats:
+ - JSON
+ - XML
+ - YAML
+
 APIs considerations:
  - Modular software design
  - Prototyping and testing API integration

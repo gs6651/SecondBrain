@@ -9,6 +9,7 @@ git config --global user.email "email.com"
 
 ### Git Commands
 ```
+git commit -m "Message Here"
 git push -u git@github.com:<repo>.git
 git clone: First-time, full copy.
 git fetch: Check for updates, store them, but don’t mix yet.

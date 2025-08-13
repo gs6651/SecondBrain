@@ -28,21 +28,22 @@ git stash pop: To retrieve your previously saved changes
 
 
 ```
-Get-Service ssh-agent | Set-Service -StartupType Automatic
-
 # By default the ssh-agent service is disabled. Configure it to start automatically.
 # Make sure you're running as an Administrator.
+
+Get-Service ssh-agent | Set-Service -StartupType Automatic
 ```
+
+#### Start the service
 
 ```
 Start-Service ssh-agent
-
-# Start the service
 ```
+
+#### This should return a status of Running
+
 ```
 Get-Service ssh-agent
-
-# This should return a status of Running
 ```
 
 ```

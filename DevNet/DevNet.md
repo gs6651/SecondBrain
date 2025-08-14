@@ -28,3 +28,21 @@ APIs considerations:
  - Challenges in consuming networked APIs
  - Distributed computing patterns
 
+
+
+- Modular Software Design
+- Modular Design Benefits
+- OOP
+- Architecture and Design Patterns
+- MVC Architecture Pattern (Model-View-Controller)
+    * Observer pattern
+    * Strategy pattern
+    * Composite pattern
+    * Factory method
+    * Adapter pattern
+
+    - Downsides of the MVC pattern:
+        -   Increased complexity
+        -   Excessive number of change notifications
+        -   View and controller tight coupling
+        -   Separate controller is sometimes not needed

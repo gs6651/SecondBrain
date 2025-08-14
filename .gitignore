@@ -3,5 +3,6 @@
 /**/.*/ # ignore all dotted folders
 .obsidian/
 Z_Notes_ATT/
+DevNet/DEVASC
 !/.gitignore  # except `gitignore` :)
 

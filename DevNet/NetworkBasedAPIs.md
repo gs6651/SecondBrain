@@ -1,0 +1,11 @@
+
+ - HTTP: HyperText Transfer Protocol
+    - Application Layer Protocol.
+    - Uses TCP
+    - Connectionless (By Default). But with the use of HTTP headers, can make it behave like a sateful.
+    - Client initiates the session
+    - 
+ - HTTP APIs
+ - Web APIs
+    - RPC
+    - REST API

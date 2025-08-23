@@ -1,5 +1,6 @@
+# HTTP
 
-# HTTP Overview
+## HTTP Overview
 
 HTTP is an application layer protocol and is the foundation of communication for the World Wide Web. HTTP is based on a client/server computing model, where the client (for example, a web browser) and the server (for example, a web server) use a request-response message format to transfer information.
 
@@ -9,101 +10,262 @@ By default, HTTP is a stateless (or connectionless) protocol; it works without t
 
 The information is media-independent. Any type of data can be sent by HTTP, as long as both the client and the server know how to handle the data content.
 
+![alt text](/DevNet/DEVASC/Images/image.png)
 
-Request-Response Cycle
+
+
+### Request-Response Cycle
 The data is exchanged via HTTP requests and HTTP responses, which are specialized data formats used for HTTP communication. A sequence of requests and responses is called an HTTP session and is initiated by a client by establishing a connection to the server.
 
+![alt text](/DevNet/DEVASC/Images/image.png)
 
 Process of the request-response cycle:
 
-Client sends an HTTP request to the web.
-
-Server receives the request.
-
-Server processes the request.
-
-Server returns an HTTP response.
-
-Client receives the response.
+ - Client sends an HTTP request to the web.
+ - Server receives the request.
+ - Server processes the request.
+ - Server returns an HTTP response.
+ - Client receives the response.
 
 You can observe this request-response cycle if you enter the developer mode in your browser, visiting a website and analyzing the HTTP requests and responses shown in network section.
+
+![alt text](/DevNet/DEVASC/Images/image2.png)
 
 
 Follow these steps to inspect the request-response cycle.
 
-Visit a URL in the browser.
+ - Visit a URL in the browser.
+ - Enter the developer mode (usually the F12 key).
+ - Select an HTTP session.
+ - Check out the request and response headers.
+ - Inspect the header data.
+ - Inspect the response body data.
 
-Enter the developer mode (usually the F12 key).
-
-Select an HTTP session.
-
-Check out the request and response headers.
-
-Inspect the header data.
-
-Inspect the response body data.
-
-HTTP Request
+### HTTP Request
 An HTTP request is the message sent by the client. The request consists of four parts:
 
-Request-line, which specifies the method and location of accessing the resource. It consists of the request method (or HTTP verb), request Universal Resource Identifier (URI), and protocol version, in that order.
-
-Zero or more HTTP headers. These contain additional information about the request target, authentication, taking care of content negotiation, and so on.
-
-Empty line, indicating the end of the headers.
-
-Message body, which contains the actual data transmitted in the transaction. It is optional and mostly used in HTTP POST requests.
+ - **Request-line**, which specifies the method and location of accessing the resource. It consists of the request method (or HTTP verb), request Universal Resource Identifier (URI), and protocol version, in that order.
+ - **Zero or more HTTP headers**. These contain additional information about the request target, authentication, taking care of content negotiation, and so on.
+ - **Empty line**, indicating the end of the headers.
+ - **Message body**, which contains the actual data transmitted in the transaction. It is optional and mostly used in HTTP POST requests.
 
 HTTP requests do have some constraints. They are limited in size and URL length and will return an error if the size is exceeded. While the HTTP standard itself does not dictate any limitations, they are imposed by the specific server configuration. Very long URLs (more than 2048 characters) and big headers (more than 8 KB) should be avoided.
 
 Request body sizes vary and depend on the server and method type, but it is not unusual to use a size of anywhere from a few megabytes to a few gigabytes. Body size is determined from the request headers, specifying the content length and encoding.
 
+![alt text](/DevNet/DEVASC/Images/image3.png)
+
 
 The example shows an HTTP request where the client sends the server data to create/update a resource identified with the name Joe.
 
-HTTP Response
+### HTTP Response
+
 An HTTP response is the reply to the HTTP request and is sent by the server. The structure is similar to that of the request and consists of the following parts:
 
-Status-line, which consists of the protocol version, a response code (called HTTP Response Code), and a human-readable reason phrase that summarizes the meaning of the code.
-
-Zero or more HTTP headers. These contain additional information about the response data.
-
-Empty line, indicating the end of the headers.
-
-Message body, which contains the response data transmitted in the transaction.
+ - **Status-line**, which consists of the protocol version, a response code (called HTTP Response Code), and a human-readable reason phrase that summarizes the meaning of the code.
+ - **Zero or more HTTP headers**. These contain additional information about the response data.
+ - **Empty line**, indicating the end of the headers.
+ - **Message body**, which contains the response data transmitted in the transaction.
 
 Example of an HTTP response to a request for a customer named Joe.
 
+![alt text](/DevNet/DEVASC/Images/image.png)
 
-HTTP URL
+### HTTP URL
+
 HTTP requests use an URL to identify and locate the resources targeted by the request. The "resource" term in the URL is very broadly defined, so it can represent almost anything—a simple web page, an image, a web service, or something else.
 
+![alt text](/DevNet/DEVASC/Images/image-1.png)
 
 URLs are composed from predefined URI components:
+1. **Scheme:** Each URL begins with a scheme name that refers to a specification for assigning identifiers within that scheme. Examples of popular schemes are http, https, mailto, ftp, data, and so on.
+2. **User info:** An optional parameter, it is rarely used in modern web applications due to security risks and has been deprecated.
+3. **Host:** A URL host can be a fully qualified domain name (FQDN) or an IPv4 or IPv6 public address.
+4. **Port:** An optional parameter that specifies the connection port. If no port is set, the default port for the scheme is taken (default port is 80 for HTTP).
+5. **Resource path:** A sequence of hierarchical path segments, separated by a slash ( / ). It is always defined, although it may have zero length (for example, https://www.example.com/).
+6. **Query:** An optional parameter, preceded by the question mark (?) passed to the server that contains a query string of nonhierarchical data.
+7. **Fragment:** Also an optional parameter, the fragment starts with a hash ( # ) and provides directions to a secondary resource (for example, specific page in a document). It is processed by the client only.
 
-Scheme: Each URL begins with a scheme name that refers to a specification for assigning identifiers within that scheme. Examples of popular schemes are http, https, mailto, ftp, data, and so on.
-
-User info: An optional parameter, it is rarely used in modern web applications due to security risks and has been deprecated.
-
-Host: A URL host can be a fully qualified domain name (FQDN) or an IPv4 or IPv6 public address.
-
-Port: An optional parameter that specifies the connection port. If no port is set, the default port for the scheme is taken (default port is 80 for HTTP).
-
-Resource path: A sequence of hierarchical path segments, separated by a slash ( / ). It is always defined, although it may have zero length (for example, https://www.example.com/).
-
-Query: An optional parameter, preceded by the question mark (?) passed to the server that contains a query string of nonhierarchical data.
-
-Fragment: Also an optional parameter, the fragment starts with a hash ( # ) and provides directions to a secondary resource (for example, specific page in a document). It is processed by the client only.
 
 Two commonly mentioned terms in relation to URLs are URNs and URIs:
 
-URI identifies a resource: ../people/alice.
+ - URI identifies a resource: ../people/alice.
+ - URL also tells where to find it: http://www.example.com/people/ - alice.
+ - URN identifies a resource using a (made-up) URN scheme: urn:people:names:alice.
 
-URL also tells where to find it: http://www.example.com/people/alice.
-
-URN identifies a resource using a (made-up) URN scheme: urn:people:names:alice.
-
+![alt text](/DevNet/DEVASC/Images/image-2.png)
 
 A URI is used to unambiguously identify a resource and is a superset of URLs and Uniform Resource Names (URNs), which means that all URNs and URLs are URIs, but not vice versa. While the URI identifies the resource, it does not necessarily tell us where it is located.
 
 A URN is a URI that uses the URN scheme and identifies a resource within a given namespace. Namespace refers to a group of names or identifiers (for example, a file system, network, and so on). URNs do not guarantee the availability of a resource.
+
+
+## HTTP Applied to Web-Based APIs
+
+Web APIs are a subset of APIs, accessible over HTTP. Web APIs are software concepts that usually consist of one or more publicly exposed endpoints, their request and response structures, and abstraction of underlying layers.
+
+To communicate with these endpoints in an efficient and standardized way, HTTP request and response messages are used.
+
+![alt text](/DevNet/DEVASC/Images/image-0.png)
+
+Some web-based API usage examples are:
+
+ - **Resource manipulation:** APIs commonly support create, read, update, delete (CRUD) actions on resources.
+ - **Automation:** More and more remote systems can be automated via exposed API endpoints, either sending data automatically or reacting to some predefined conditions.
+ - **System configuration:** A lot of networking equipment can be remotely configured via various HTTP-based protocols.
+ - **Service management:** Web services such as monitoring and provisioning benefit greatly from API usage due to abstraction and standardization.
+
+### HTTP Methods
+HTTP methods (sometimes also known as HTTP verbs, although they can also be nouns) are a predefined set of request methods that represent desired actions that should be performed on the resources. They are used in HTTP requests as a part of the request line.
+
+Some methods are considered safe because they do not alter the state of the resources in any way. They are read only and idempotent. Idempotency is a property of HTTP requests. An idempotent request can be performed multiple times and the same result will be produced. It does not cause unintended side effects on the remote server, such as unwanted resource reservation or deletion, unintended counter increases, and so on.
+
+But not all requests are necessarily idempotent. That depends on the implementation. However, convention dictates some HTTP methods be only used with idempotent requests.
+
+> **Note** \
+An example of a non-idempotent request is posting a comment on a web site. Making the same request multiple times would result in multiple (duplicate) comments.
+
+![alt text](/DevNet/DEVASC/Images/image-11.png)
+
+
+| HTTP Method | Function |
+| - | - |
+| GET | Requests a representation of a specific resource. Should only retrieve data and is considered safe and idempotent.
+| POST | Used to submit an entity to the specified resource, often causing a state change or side effects on the server. Requests made with POST should include a request body.
+| DELETE | Deletes the specified resource. Subsequent calls should not cause any side effects.
+PUT | Replaces all current representations of the target resource with the request payload.
+HEAD | Asks for a response identical to that of a GET request, but without the response body. Useful for validating resource availability.
+PATCH | Applies partial modification to a resource. Useful for instances where using PUT might be too cumbersome. PATCH is not an idempotent method and is used for merging resources.
+
+
+### HTTP Status Codes
+HTTP response status codes are a predefined set of numerical codes that indicate the status of a specific HTTP request in the response header. Status codes are separated into five classes (or categories) by functionality. You can create your own status codes, but it is strongly advised that you do not, because most user agents will not know how to handle them.
+
+![alt text](/DevNet/DEVASC/Images/image-12.png)
+
+Following is a brief overview of status code categories and a few of the status codes that you are likely to encounter when working with web-based APIs. A complete list of status codes is available in RFC 7231, which describes the HTTP/1.1 standard.
+
+**1xx (Informational)**
+ - Most codes from this category indicate that the request was received and understood. They usually mean that the request processing continues and alerts the client to wait for the final response. They are rarely used.
+
+**2xx (Successful)**
+ - 200 (OK): Standard response for a successful HTTP request. The information returned depends on the request method.
+ - 201 (Created): Indicates that a resource has been successfully created.
+ - 204 (No content): The server has successfully fulfilled the request and the response body is empty. A 204 code is useful when you want to confirm that a POST request was received by the server.
+
+**3xx (Redirection)**
+ - 301 (Moved Permanently): This and all future requests should be directed to the given URI.
+ - 302 (Found): The requested resource resides temporarily under a different URI.
+ - 304 (Not Modified): Indicates that the resource has not been modified since the version specified by the request headers. Useful for reducing overhead.
+
+**4xx (Client error)**
+
+ - 400 (Bad Request): The server cannot process the request because of a malformed request  - (bad syntax, deceptive routing, size too large).
+ - 401 (Unauthorized): The request requires a valid authorized user. It usually means that  - the user is not authenticated or that authentication failed.
+ - 403 (Forbidden): The request was valid, but the server is refusing action. The user  - might not have the necessary permissions for a resource.
+ - 404 (Not Found): The server has not found anything matching the request URI. No indication is given whether the condition is temporary or permanent.
+ - Other status codes include more specific information about the request error.
+
+**5xx (Server error)**
+ - 500 (Internal Server Error): A generic error message, given when an unexpected condition  - was encountered, and no more specific message is suitable.
+ - 501 (Not Implemented): The server does not support the functionality required to fulfil  - the request.
+ - 503 (Service Unavailable): The service cannot handle the request. It is usually a temporary condition attributed to a server crash, maintenance, overload, and so on.
+ - Other status codes include more specific information about the server error.
+
+### HTTP Headers
+The headers are a list of key-value pairs that the client and server use to pass additional information or metadata between them in requests. They consist of a case-insensitive name, followed by a colon (":") and then its value. There are dozens of different headers—some defined by the HTTP standard and others defined by specific applications—so only the most common ones will be mentioned.
+
+There are four distinct types of headers:
+ - General headers:
+    - Headers from this category are not specific to any particular kind of message.
+    - They are primarily used to communicate information about the message itself and how to  - process it.
+    - **Cache-Control:** Specifies caching parameters.
+    - **Connection:** Defines connection persistency.
+    - **Date:** A datetime time stamp.
+
+ - Request headers:
+    - These headers carry information about the resource to be fetched.
+    - They also contain the information about the client.
+    - **Accept-(*):** A subset of headers that define the preferred response format.
+    - **Authorization:** Usually contains a Base64-encoded authentication string, composed of  - username and password for basic HTTP authentication.
+    - **Cookie:** Contains a list of key-value pairs that contain additional information about the  - current session, user, browsing activity, or other stateful information.
+    - **Host:** Used to specify the Internet host and port number of the resource being requested.  - This header is required in request messages.
+    - **User-Agent:** Contains the information about the user agent originating the request.
+
+ - Response headers:
+    - These headers hold additional information about the response and the server providing it.
+    - **Age:** Conveys the amount of time since the response was generated.
+    - Location: Used to redirect the client to a location other than the request URI from a  - header.
+    - **Server:** Contains the information about the software used by the origin server to handle  - the request.
+    - **Set-Cookie:** Used to send cookies from the server to the client. It contains a list of key-value pairs, called cookies.
+
+ - Entity headers:
+    - these headers contain information about the response body.
+    - **Allow:** Lists the supported methods identified by the requested resource.
+    - Content-Type: Indicates the media type of the body (also called Multipurpose Internet  - Mail Extensions [MIME] type), sent to the recipient. Used for content negotiation.
+    - **Content-Language:** Describes the language of the intended audience for the enclosed body.
+    - **Content-Length:** Indicates the size of the body.
+    - **Content-Location:** Used to supply the resource location for the entity that is accessible  - from somewhere else than the request URI.
+    - **Expires:** Gives the datetime after which the response is considered stale.
+    - **Last-Modified:** Indicates the date and time at which the origin server believes the variant was last modified.
+
+
+
+
+## HTTP Content Negotiation
+
+HTTP is used to deliver a wide variety of different content that varies in language, size, type, and more. Because supplying all the content representations with every request is not practical and the remote content format is not always known, HTTP has provisions for several mechanisms for content negotiation—the process of selecting the best representation for a given response when there are multiple representations available.
+
+The content is returned based on various types of "Accept" request headers. Because all the types of content are not supported on most servers, these headers specify the preferred resource representation. If that representation is not implemented on the server, the server should notify the client via the 406 status code (Not Acceptable). However, depending on the implementation, some servers will in that case return a status code 200 with a default resource representation.
+
+### Basic HTTP Content Negotiation
+
+![alt text](/DevNet/DEVASC/Images/image-3.png)
+
+HTTP headers that take care of content negotiation are:
+
+ - **Accept:** This header denotes the preferred media type (MIME type) for the response. A media type represents a general category and the subtype, which identifies the exact kind of data. A general type can be either discrete (representing a single resource) or multipart, where a resource is broken into pieces, often using several different media types (for example, multipart/form-data).
+Some useful discrete general types are:
+    - **Application:** Any kind of binary data, that does not fall explicitly into other types.  - Data will be either executed or interpreted in a way that requires a specific  - application or category. Generic binary data has the type application/octet-stream,  - while more standardized formats include JSON (application/json) or XML (application/xml).
+    - **Audio:** Audio or music data (for example, audio/mpeg).
+    - **Image:** Image or graphical data, including both bitmap (image/bmp) and vector still  - images, and animated versions of still-image formats, such as animated GIF (image/gif).
+    - **Text:** Text-only data, including any human readable content (text/plain), source code  - (text/javascript, text/html), or formatted data (text/csv).
+    - **Video:** Video data or files (for example, video/mp4).
+ - **Accept-Charset:** Sets the preferred character sets, such as UTF-8 or ISO 8859-1. It is  - important when displaying resources in languages that include special characters.
+ - **Accept-Datetime:** Requests a previous version of the resource, denoted by the point in  - time with datetime. The value must always be older than the current datetime.
+ - **Accept-Encoding:** Sets the preferred encoding type for the content.
+ - **Accept-Language:** The preferred natural language. Useful for various localizations.
+
+All these headers support quality-factor weighting.
+
+ - It allows the user or user agent to indicate the relative degree of preference for that  - media range, using the q-value scale from 0 to 1.
+ - The default value is q=1.
+ - A request header that prefers U.S. English over British English but still prefers  - British English over Indian English would look like this:
+    - Accept-Language: en-US, en-GB;q=0.9, en-IN;q=0.8, *;q=0.7
+
+Here is an example of two HTTP requests and responses that fetch the same content but use different headers for content negotiation. Note how the different Accept headers produce different formats of responses and how different Accept-Language produce different terms for the same food.
+
+| Request Header | Response Body |
+| - | - |
+GET http://www.example.com/api/menu Accept: application/json Accept-Language: en-GB | ```{ "menu": { "name": "crisps" } }```
+GET http://www.example.com/api/menu Accept: application/xml Accept-Language: en-US | ```<?xml version="1.0" encoding="UTF-8"?> <menu> <name>chips</name> </menu>```
+
+### Server-Driven vs. Agent-Driven Content Negotiation
+
+HTTP provides you with several different content negotiation mechanisms. Generally, they can be split into two groups—server-driven negotiation (proactive) and agent-driven negotiation (reactive).
+
+Server-driven negotiation is performed with these steps:
+
+1. A client submits a request to a server.
+2. The client informs the server which media types it understands ("Accept" header and quality-factor weighting).
+3. The server then supplies the version of the resource that best fits the request. Often, redirection is used to point the client to the correct resource.
+
+![alt text](/DevNet/DEVASC/Images/image-4.png)
+
+Server-driven negotiation does not scale well, so agent-driven negotiation can be used:
+
+1. An user agent (or any other client) submits a request to a server.
+2. The server responds and provides the agent with available representations on the server and their locations, usually with a "300 Multiple Choices" response that depends on the application implementation.
+3. The user agent then makes another request to the desired URL for the actual resource.
+
+![alt text](/DevNet/DEVASC/Images/image-5.png)

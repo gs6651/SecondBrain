@@ -142,66 +142,16 @@
 
 > Only Network Type Broadcast & Non-Broadcast use Type-2 LSA. Rest Don't.
 
+### LSA & Area Table
 
-# LSA & Area Table: PENDING 
- 
-Type 1
-Type 2
-Type 3
-DEFAULT
-Type 4
-Type 5
-Type 7
-Area 0
-YES
-YES
-YES
-NO
-YES
-YES
-NO
-NORMAL
-YES
-YES
-YES
-NO
-YES
-YES
-NO
-STUB
-YES
-YES
-YES
-YES
-NO
-NO
-NO
-Totally STUB
-YES
-YES
-NO
-YES
-NO
-NO
-NO
-NSSA
-YES
-YES
-YES
-NO
-NO
-NO
-YES
-Totally NSSA
-YES
-YES
-NO
-YES
-NO
-NO
-YES
-
-
+| - | Type 1 | Type 2 | Type 3 | Default | Type 4 | Type 5 | Type 7 |
+| - | - | - | - | - | - | - | - |
+| Area 0  | YES | YES | YES | NO | YES | YES | NO |
+| NORMAL | YES | YES | YES | NO | YES | YES | NO |
+| STUB | YES | YES | YES | YES | NO | NO | NO |
+| Totally STUB | YES | YES | NO | YES | NO | NO | NO |
+| NSSA | YES | YES | YES | NO | NO | NO | YES |
+| Totally NSSA | YES | YES | NO | YES | NO | NO | YES |
 
 LSA's Explanation:
 

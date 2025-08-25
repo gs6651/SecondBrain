@@ -195,10 +195,11 @@ LSA's Explanation:
 
 
 
-Traffic Engineering in OSPF:
-STUB:
-Longest prefix match (# area X no-summary) For INTER-AREA ROUTES only
-# area X default-cost (For EXTERNAL Routes Only)
+### Traffic Engineering in OSPF:
+
+- ***STUB:***
+ - Longest prefix match (`area X no-summary`) For INTER-AREA ROUTES only
+ - `area X default-cost` (For EXTERNAL Routes Only)
 
 ### Option Fields in Hello:
  - DN - For Loop Avoidance in L3 VPN

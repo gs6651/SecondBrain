@@ -47,12 +47,12 @@ Format
 
 
 
-KEEP-ALIVE
-If router accepts parameters send in OPEN message
-Contains only header, NO data
-NOTIFICATION
-Only when something bad happens
-Format:
+**KEEP-ALIVE**
+ - If router accepts parameters send in OPEN message Contains only header, NO data
+
+**NOTIFICATION**
+ - Only when something bad happens
+ - Format:
 2+ Bytes
 Error Code (1 Byte)
 Message Header Error
@@ -82,7 +82,8 @@ Error Subcode (1 byte)
 More specific information about the nature of reported error
 Error Data (Variable)
 Databases on error code or Error subcode, used for diagnose the reason
-UPDATE
+
+**UPDATE**
 NLRI
 Path Attributes
 MTU
@@ -93,90 +94,85 @@ Format:
 
 
 
-Path Selection
-Mnemonic = We Love Oranges, AS Oranges Mean Pure Pulp
-
-Valid Next Hop (Ignore Routes with incomplete information of Next-hop)
-W - Weight // Highest // 32768 // Incoming Update // Local to router
-L - Local Preference // Highest // 100 // Incoming Update
-O - Origin-Type -- Locally Originated (Network > redistribute > aggregate > not locally originated)
-AS - shortest AS-path // Outgoing Update (AS SET & CONFED does not count here)
-O - Origin Code  //  i > e > ?
-M - Lowest MED // Outgoing Update (Only for same AS, until deterministic & always compare MED are configured)
-P - Paths // eBGP > iBGP
-P - Multi-Path -- Prefer the Path with LOWEST IGP metric to BGP next-hop (If it's equal, can use Multi-Path)
-# bgp bestpath as-path multipath-relax
- 
-Tie Breakers :
-Oldest Route
-Lowest Router-ID
-Shortest Cluster-List
-Lowest neighbor IP
+**Path Selection**
+ - Mnemonic = We Love Oranges, AS Oranges Mean Pure Pulp
+ - Valid Next Hop (Ignore Routes with incomplete information of Next-hop)
+	- W - Weight // Highest // 32768 // Incoming Update // Local to router
+	- L - Local Preference // Highest // 100 // Incoming Update
+	- O - Origin-Type -- Locally Originated (Network > redistribute > aggregate > not locally originated)
+	- AS - shortest AS-path // Outgoing Update (AS SET & CONFED does not count here)
+	- O - Origin Code  //  i > e > ?
+	- M - Lowest MED // Outgoing Update (Only for same AS, until deterministic & always compare MED are configured)
+	- P - Paths // eBGP > iBGP
+	- P - Multi-Path -- Prefer the Path with LOWEST IGP metric to BGP next-hop (If it's equal, can use Multi-Path)
+		- `# bgp bestpath as-path multipath-relax`
+  - Tie Breakers :
+	- Oldest Route
+	- Lowest Router-ID
+	- Shortest Cluster-List
+	- Lowest neighbor IP
  
 Bla.. Bla.. Bla..
 
 
-BGP States:
-Finite State Machine (FSM)
-Idle
-BGP Starts in this state
-All incoming connections will be ignored
-Start Event (IE1) : Configuring or Resetting BGP will trigger IE1
-Initialize ConnectRetry timer
-Initialize TCP session to neighbor
-Listens TCP initialization from neighbor
-Changes state to connect
-After first fail to reset BGP Process initiates ConnectRetry timers (60s), Double next time and will keep on increasing 
-Connect:
-Waits for TCP session to finish
-If TCP connection is Successful :
-Clear ConnectRetry timer
-Completes initialization
-Sends an Open Message to neighbor and transition to OpenSent state
-If TCP connection is Unsuccessful : (TCP RST, etc.)
-Continue listening for any incoming TCP connection from neighbor
-Resets ConnectRetry
-Transition to Active State
-If TCP connection taking too long to respond or for any other reason it's getting delayed, then :
-ConnectRetry Timer will expires in Connect state only
-Timer will be reset
-Another attempt will be made to establish TCP Connection and Process stays in Connect State
+### BGP States:
+ - Finite State Machine (FSM)
+ 1. **Idle**
+	- BGP Starts in this state
+	- All incoming connections will be ignored
+	- Start Event (IE1) : Configuring or Resetting BGP will trigger IE1
+	- Initialize `ConnectRetry` timer
+	- Initialize TCP session to neighbor
+	- Listens TCP initialization from neighbor
+	- Changes state to `connect`
+	- After first fail to reset BGP Process initiates `ConnectRetry` timers (60s), Double next time and will keep on increasing 
+
+2. **Connect:**
+	- Waits for TCP session to finish
+	- If TCP connection is Successful :
+		- Clear `ConnectRetry` timer
+		- Completes initialization
+		- Sends an `Open Message` to neighbor and transition to `OpenSent state`
+	- If TCP connection is Unsuccessful : (TCP RST, etc.)
+		- Continue listening for any incoming TCP connection from neighbor
+		- Resets `ConnectRetry`
+		- Transition to `Active` State
+	- If TCP connection taking too long to respond or for any other reason it's getting delayed, then:
+		- `ConnectRetry` Timer will expires in Connect state only
+		- Timer will be reset
+		- Another attempt will be made to establish TCP Connection and Process stays in `Connect` State
+	- Any other Input Event (IE) will transition to `idle` state.
  
-*Any other Input Event (IE) will transition to idle state.
+3. **Active**
+	- Actively try to establish TCP session (initiated by local router)
+	- If TCP connection is successful
+		- Clears `ConnectRetry` timer
+		- Completes initialization
+		- Sends an Open Message to neighbor and transition to OpenSent state
+	- If TCP connection is Unsuccessful
+		- Means `ConnectRetry` timers expires in Active State, the process transition back to Connect State
+		- Resets `ConnectRetry` timer
+		- Initiates & Listens TCP connection
+	- Any other input Event (IE), except START, triggers the idle state
+
+4. **Open Sent**
+	- Hold timer negotiation
+	- Decision of eBGP or iBGP
+
+5. **Open Confirm**
+	- If `Keepalive` is received, state will transit to Established
+	- If Notification or TCP Disconnect received, state will transit to IDLE
+	- Established
+	- Peers are ready to exchange updates, keepalives or notifications
  
-Active
-Actively try to establish TCP session (initiated by local router)
-If TCP connection is successful
-Clears ConnectRetry timer
-Completes initialization
-Sends an Open Message to neighbor and transition to OpenSent state
-If TCP connection is Unsuccessful
-Means ConnectRetry timers expires in Active State, the process transition back to Connect State
-Resets ConnectRetry timer
-Initiates & Listens TCP connection
-*Any other input Event (IE), except START, triggers the idle state
-Open Sent
-Hold timer negotiation
-Decision of eBGP or iBGP
-Open Confirm
-If Keepalive is received, state will transit to Established
-If Notification or TCP Disconnect received, state will transit to IDLE
-Established
-Peers are ready to exchange updates, keepalives or notifications
- 
 
 
-BGP Attributes:
-Well-Known Mandatory
-Well-Known Discretionary
-Optional Transitive
-Optional Non-Transitive
-Must be recognized by all BGP routers
-
-Must be included in all  updates messages
-Must be recognized by all BGP routers
-
-May or May-not carry in  updates messages
+### BGP Attributes:
+Well-Known Mandatory | Well-Known Discretionary
+| - | - |
+Optional Transitive | Optional Non-Transitive
+Must be recognized by all BGP routers | Must be recognized by all BGP routers
+Must be included in all  updates messages | May or May-not carry in  updates messages
 BGP process should accept the update in which it is included and pass it to its peers, whether supported or not
  
 Origin (i, e, ?)
@@ -212,28 +208,25 @@ Cluster-ID: It's the router-ID of the route-reflector.
 
 
 
-Misc.
-BGP supports graceful neighbor shutdown 
-Updates are incremental only (Means whenever there is change in network)
-Withdrawn routes are part of UPDATE message
-Updates include NLRI and Attributes, but Withdrawn includes NLRI only.
-There may be multiple routes in NLRI Field, but each update message describes only a single BGP route. (Reason: PATH Attribute describe only single path, but that PATH Attribute may lead to multiple destination)
-If route information has been changed, then there is no withdrawn message required, only advertisement of route replacement will be enough.
-The KEEP-ALIVE message contains only a header, but no data.
-Note that the negotiation done for the Version Number (by actually resetting the session until both nodes agree on a common Version) AND the one for the Hold Timer (use the minimum value of the two BGP speakers) are very different. In both cases, only the OPEN message is sent by each router. However, if the values don't match (in the case of Hold Timer), the session is not reset.
-Much more extensible via AFI/SAFI
-IPv4 Unicast (By Default)
-IPv6 Unicast, IPv4 & IPv6 Multicast, IPv4 & IPv6 MPLS, MDT, VPLS etc.
-After successful process of a prefix, below BGP Path Attributes (PAs) are established:
-Connected Network
-Next-hop BGP attribute – 0.0.0.0
-BGP origin attribute – IGP (i)
-BGP weight – 32,768.
-Static Route/Routing Protocol
-Next-hop BGP attribute – next-hop IP address in the RIB
-BGP origin attribute – IGP (i)
-BGP weight – 32,768
-Multi Exit Discriminator (MED) – IGP metric
-
-![image](https://github.com/user-attachments/assets/d09865a2-4963-4a2c-a71c-987633616e8d)
-
+### Misc.
+ - BGP supports graceful neighbor shutdown 
+ - Updates are incremental only (Means whenever there is change in network)
+ - Withdrawn routes are part of UPDATE message
+ - Updates include NLRI and Attributes, but Withdrawn includes NLRI only.
+ - There may be multiple routes in NLRI Field, but each update message describes only a single BGP route. (Reason: PATH Attribute describe only single path, but that PATH Attribute may lead to multiple destination)
+ - If route information has been changed, then there is no withdrawn message required, only advertisement of route replacement will be enough.
+ - The KEEP-ALIVE message contains only a header, but no data.
+ - Note that the negotiation done for the Version Number (by actually resetting the session until both nodes agree on a common Version) AND the one for the Hold Timer (use the minimum value of the two BGP speakers) are very different. In both cases, only the OPEN message is sent by each router. However, if the values don't match (in the case of Hold Timer), the session is not reset.
+ - Much more extensible via AFI/SAFI
+ - IPv4 Unicast (By Default)
+ - IPv6 Unicast, IPv4 & IPv6 Multicast, IPv4 & IPv6 MPLS, MDT, VPLS etc.
+ - After successful process of a prefix, below BGP Path Attributes (PAs) are established:
+ - Connected Network
+ - Next-hop BGP attribute – 0.0.0.0
+ - BGP origin attribute – IGP (i)
+ - BGP weight – 32,768.
+ - Static Route/Routing Protocol
+ - Next-hop BGP attribute – next-hop IP address in the RIB
+ - BGP origin attribute – IGP (i)
+ - BGP weight – 32,768
+ - Multi Exit Discriminator (MED) – IGP metric

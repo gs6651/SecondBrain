@@ -19,39 +19,39 @@
 - ATM's VPI/VPC
 
 
-MPLS Label Header Format
-4-Byte
-20-bit Label = Locally significant to Router & neighbor Router
-3-bit EXP = Class of Service
-1-bit S = Indicates Bottom of Stack
-8-bit TTL = Time to Live
- 
+### MPLS Label Header Format
+ - 4-Byte
+ - 20-bit Label = Locally significant to Router & neighbor Router
+ - 3-bit EXP = Class of Service
+ - 1-bit S = Indicates Bottom of Stack
+ - 8-bit TTL = Time to Live
+
+
+```
 ----------------------------------------------------------------------
 || 20 bit LABEL ||  3-bit EXP || 1-bit S || 8-bit TTL ||
 ----------------------------------------------------------------------
+```
 
 
-
-Misc.
-Implicit-NULL (Pop Label (Label = 3))  label is used for PHP
-To remove top labels
-Explicit-NULL = (Label =0) = No PHP
-To preserve EXP values, which is not possible in Implicit-NULL
-Router Alert Label (Label = 1) :  MPLS Operation & Maintenance
-OAM Alert Label : (Label = 14), Failure detection, localization & Performance Monitoring, Cisco don't use it
-No label / Unlabeled / Untagged = Not running MPLS (Towards CE)
-To remove all labels (Entire Stack)
-Aggregate Label = To perform routing lookup as per global routing table. In other words LSR is doing aggregation or summarization, and needs to send after removing labels, so that IP lookup can be done for a more specific route.
-FEC = MPLS Labels + IP Prefixes (+Interfaces and NH)
-An FEC is a set of packets that a single router:
-(1)  Forwards to the same next hop;
-(2)  Out the same interface; and
-(3)  With the same treatment (such as queuing).
-
+### Misc.
+ - Implicit-NULL (Pop Label (Label = 3))  label is used for PHP
+ - To remove top labels
+ - Explicit-NULL = (Label =0) = No PHP
+ - To preserve EXP values, which is not possible in Implicit-NULL
+ - Router Alert Label (Label = 1) :  MPLS Operation & Maintenance
+ - OAM Alert Label : (Label = 14), Failure detection, localization & Performance Monitoring, Cisco don't use it
+ - No label / Unlabeled / Untagged = Not running MPLS (Towards CE)
+ - To remove all labels (Entire Stack)
+ - Aggregate Label = To perform routing lookup as per global routing table. In other words LSR is doing aggregation or summarization, and needs to send after removing labels, so that IP lookup can be done for a more specific route.
+ - FEC = MPLS Labels + IP Prefixes (+Interfaces and NH)
+ - An FEC is a set of packets that a single router:
+	- Forwards to the same next hop;
+	- Out the same interface; and
+	- With the same treatment (such as queuing).
 
 
-
-TDP vs. LDP 
+### TDP vs. LDP 
 Tag Distribution Protocol (TDP) 
 Originally used with Cisco's Tag Switching 
 Uses UDP broadcast to port 71 1 to discover neighbors 
@@ -63,85 +63,85 @@ Once discovered, TCP session is setup on port 646
 
 
 
-TDP & LDP Caveats 
-Label protocol must match for adjacency 
-debug ip packet detail can be used to discover remote label protocol 
-Devices must have route to transport-address to establish TCP session 
-Transport address comes from LDP Router-ID 
-Router-ID selection similar to OSPF/BGP/etc. 
-Can be modified with interface level commands... 
-IOS  mpls ldp discovery transport-address 
-IOS XR discovery transport-address 
+### TDP & LDP Caveats 
+ - Label protocol must match for adjacency 
+ - `debug ip packet detail` can be used to discover remote label protocol 
+ - Devices must have route to transport-address to establish TCP session 
+ - Transport address comes from LDP Router-ID 
+ - Router-ID selection similar to OSPF/BGP/etc. 
+ - Can be modified with interface level commands... 
+ - IOS  mpls ldp discovery transport-address 
+ - IOS XR discovery transport-address 
 
 
 
-Overlay VPNs 
-Service Provider does not participate in customer routing 
-Must be provisioned prior to communication 
-Frame Relay & ATM PVCs 
-Leased lines 
-GRE Tunnels 
-Overlay suffers from (n(n-l ))/2 scalability issues 
-Allows customers to use flexible addressing scheme 
+### Overlay VPNs 
+ - Service Provider does not participate in customer routing 
+ - Must be provisioned prior to communication 
+ - Frame Relay & ATM PVCs 
+ - Leased lines 
+ - GRE Tunnels 
+ - Overlay suffers from (n(n-l ))/2 scalability issues 
+ - Allows customers to use flexible addressing scheme 
 
-Peer to Peer VPNs
-Service Provider does participate in customer routing 
-No static provisioning required 
-Service Provider required to keep customer traffic separate through route filtering and access-lists
-Does not allow customers to use flexible addressing
-Problems with default routing
+### Peer to Peer VPNs
+ - Service Provider does participate in customer routing 
+ - No static provisioning required 
+ - Service Provider required to keep customer traffic separate through route filtering and access-lists
+ - Does not allow customers to use flexible addressing
+ - Problems with default routing
 
 
 
-Different MPLS Modes:
-• Label Distribution Mode
-	○ Downstream-on-Demand
-○ Unsolicited Downstream
-• Label Retention Mode
-	○ Liberal
-	○ Conservative
-• LSP control mode
-	○ Independent
-	○ Control
+### Different MPLS Modes:
+ - Label Distribution Mode
+	 - Downstream-on-Demand
+ - Unsolicited Downstream
+ - Label Retention Mode
+	- Liberal
+	- Conservative
+ - LSP control mode
+	- Independent
+	- Control
 
  
 
 
-LDP & It's Operations:
-LDP Functions :
-LSR Discovery
-Session Establishment & Maintenance
-Advertisement of Label Mappings
-Housekeeping by means of Notifications
+### LDP & It's Operations:
+ - ***LDP Functions:***
+	- LSR Discovery
+	- Session Establishment & Maintenance
+	- Advertisement of Label Mappings
+	- Housekeeping by means of Notifications
  
-LDP Hello :
-UDP to discover Neighbors on Port 646 and IP : 224.0.0.2
-After discovery, communicate on TCP-646 & LDP-IDs, for session parameters like : Timers, LDP/TDP, VPI/VCI ranges, DLCI ranges
-Timers : 5, 15 (Default, but can be changed)
-If Timers are miss-matched, lower value will be consider, like BGP
+ - ***LDP Hello:***
+	- UDP to discover Neighbors on Port 646 and IP : 224.0.0.2
+	- After discovery, communicate on TCP-646 & LDP-IDs, for session parameters like : Timers, LDP/TDP, VPI/VCI ranges, DLCI ranges
+	- Timers : 5, 15 (Default, but can be changed)
+	- If Timers are miss-matched, lower value will be consider, like BGP
  
-LDP-ID
-6 Bytes Field
-4 Bytes used for identifying the LSR Uniquely
-2 Bytes used to identify "Label Space"
-If last 2 Bytes == 0, Per-Platform Label Space
-If last 2 Bytes !=0, per-interface label space (LC-ATM)
-LDP-ID must be reachable to neighbor
+ - ***LDP-ID***
+	- 6 Bytes Field
+	- 4 Bytes used for identifying the LSR Uniquely
+	- 2 Bytes used to identify "Label Space"
+	- If last 2 Bytes == 0, Per-Platform Label Space
+	- If last 2 Bytes !=0, per-interface label space (LC-ATM)
+	- LDP-ID must be reachable to neighbor
  
-All-frame relay links will require only 1 LDP session for all links
+> All-frame relay links will require only 1 LDP session for all links
 LC-ATM will require 1 LDP session for 1 Link
 
 
-LSR's working mode :
-Advertisement Mode
-Unsolicited Downstream (UD)
-Downstream-on-Demand (DoD) advertisement mode
-Label Retention Mode
-Liberal Label Retention (LLR)
-Conservative Label Retention (CLR) mode
-LSP Control Mode
-Independent LSP Control
-Ordered LSP Control mode
+***LSR's working mode:***
+ - Advertisement Mode
+ - Unsolicited Downstream (UD)
+ - Downstream-on-Demand (DoD) advertisement mode
+ - Label Retention Mode
+ - Liberal Label Retention (LLR)
+ - Conservative Label Retention (CLR) mode
+ - LSP Control Mode
+ - Independent LSP Control
+ - Ordered LSP Control mode
 
 
 Controlling VPNv4 Routes 
@@ -279,34 +279,33 @@ Manual Re-Optimization
   
 
 
-RSVP:
- **** After a path is calculated with CSPF, that path needs to be signaled, that's done with RSVP.  ****
-Uses its own Protocol (46)
-Can be encapsulated in UDP, but never implemented
-USED FOR : To Signal & Resource reservation throughout the network
-Three Basics Functions
-Path SETUP & MAINTENANCE
-Path Teardown
-Error Signaling
-Soft-State Protocol : Means, periodically needs to refresh reservation
-Signaling in TE (Messages Types)
-PATH Message
-Resv Message
-PATH Error Message
-Resv Error Message
-PATH Tear Message
-Resv Tear Message
-ResvConf Message (Optional)
-ResvTearConf Message (Cisco Proprietary)
-Hello : Local Keep alive between 2 direct connected neighbor
-   
-Shared Explicit (SE) Reservation style:
-All RSVP reservations are uniquely identified with :
-Sender Address : Headend RID
-LSP ID
-Endpoint Address : Tail-end RID
-Tunnel ID : Source Tunnel Interface No.
-Extended Tunnel ID
+### RSVP:
+ > After a path is calculated with CSPF, that path needs to be signaled, that's done with RSVP.
+ - Uses its own Protocol (46)
+ - Can be encapsulated in UDP, but never implemented
+ - USED FOR: To Signal & Resource reservation throughout the network
+ - Three Basics Functions
+	- Path SETUP & MAINTENANCE
+	- Path Teardown
+	- Error Signaling
+ - Soft-State Protocol: Means, periodically needs to refresh reservation
+ - Signaling in TE (Messages Types)
+	- PATH Message
+	- Resv Message
+	- PATH Error Message
+	- Resv Error Message
+	- PATH Tear Message
+	- Resv Tear Message
+	- ResvConf Message (Optional)
+	- ResvTearConf Message (Cisco Proprietary)
+	- Hello: Local Keep alive between 2 direct connected neighbor
+ - Shared Explicit (SE) Reservation style:
+ - All RSVP reservations are uniquely identified with:
+	- Sender Address : Headend RID
+	- LSP ID
+	- Endpoint Address : Tail-end RID
+	- Tunnel ID : Source Tunnel Interface No.
+	- Extended Tunnel ID
  
 
 RSVP Signaling Objects:

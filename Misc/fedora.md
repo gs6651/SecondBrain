@@ -1,27 +1,29 @@
 
-### To enable FlatHub
+# Fedora Tweaks
 
-`flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
+- To enable FlatHub
+  - `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
+- Add SSH private key to the ssh-agent
+  - `ssh-add ~/.ssh/id_ed25519`
 
-### Add SSH private key to the ssh-agent
-
-`ssh-add ~/.ssh/id_ed25519`
-
-### Google Chrome
+## Google Chrome Installation
 
 1. Download google chrome *.rpm file
 2. Navigate to that folder
 3. `sudo dnf install google-chrome-stable_current_x86_64.rpm`
 
-### Apps Needed
+## Misc. Apps Needed
 
-1. VLC from "Flathub"
-2. GIMP
-3. KdenLive
-4. Audacity
-5. Chrome
+- VLC from "Flathub"
+- GIMP
+- KdenLive
+- Audacity
+- Chrome
+- Okular
+- MuseScore Studio
+- VScode
 
-### To check the hostname & other system details
+## To check the hostname & other system details
 
 - `hostnamectl`
 - `sudo hostnamectl set-hostname --static "NewHostname"`

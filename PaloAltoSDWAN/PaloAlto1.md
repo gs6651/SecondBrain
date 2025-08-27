@@ -26,3 +26,5 @@
 
 - BFD status Using CLI. [URL](https://docs.paloaltonetworks.com/prisma-sd-wan/ion-cli-reference/use-cli-commands/dump-commands/dump-bfd-status).
 - ![alt text](./Images/Image20250825221428.png)
+- ![alt text](./Images/NAT Rules.png)
+- 

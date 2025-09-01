@@ -1,3 +1,6 @@
+
+# BGP: Border Gateway Protocol
+
 > BGP is an application and NOT a routing protocol. Used to exchange NLRI.
 
 **IPv4 NLRI contains:**

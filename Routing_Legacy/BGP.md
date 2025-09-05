@@ -187,7 +187,7 @@ Well-Known Mandatory | Well-Known Discretionary | Optional Transitive |  Optiona
 | <br/> * Must be recognized by all BGP routers <br/> * Must be included in all  updates messages | <br/> * Must be recognized by all BGP routers <br/> * May or May-not carry in  updates messages | BGP process should accept the update in which it is included and pass it to its peers, whether supported or not | - |
 | `Origin (i, e, ?)` | `Local Preference` | <br/> `Aggregator:` It tells where the aggregation was done, by including the RID & AS number. <br/> * When Aggregation happens, below will still tell about ASes from where updates have been through, so that loop can be avoided. <br/> `AS_SEQUENCE:`  Ordered list, will contain all "common" ASes. <br/>  `AS_SET:` Unordered list, will contain all "uncommon" ASes | <br/>  `MED:` <br/> * BGP's Metric, lower is better <br/> * Can be advertised to routers that are one AS away, not beyond that. <br/> `Deterministic-MED:` It groups the same next AS routes in one group, so that MED can be compared. <br/> `Always-Compare-MED:` So that MED can be compared even if the AS-Path list is different. |
 | `AS-PATH` | `Atomic-Aggregate:` Loss of path-information has occurred. | <br/>  `Community:` 32-bits (4 Octets) <br/> `NONE:` No Community <br/> `NO_EXPORT:` Not outside of the AS <br/> `NO_ADERTISE:` Not to ANY peer <br/> `NO_SUBCONFED:` | `Originator-ID:` It's the router-ID of the originator of the route. |
-| `Next-Hop` | - | <br/> `Extended Communities:` 64-bits (8 Octets) <br/> * Route-Target <br/> * Route-Origin <br/> * Link Bandwidth <br/> * Opaque: Allows Opaque data to be carried in BGP extended communities | `Cluster-ID:` It's the router-ID of the route-reflector.
+| `Next-Hop` | - | <br/> `Extended Communities:` 64-bits (8 Octets) <br/> * Route-Target <br/> * Route-Origin <br/> * Link Bandwidth <br/> * Opaque: Allows Opaque data to be carried in BGP extended communities | `Cluster-ID:` It's the router-ID of the route-reflector.|
 
 ## Misc
 
@@ -215,15 +215,15 @@ Well-Known Mandatory | Well-Known Discretionary | Optional Transitive |  Optiona
 
 ## Best Route Selection
 
-Clipped from: https://www.cisco.com/c/en/us/support/docs/ip/express-forwarding-cef/13706-20.html 
+Clipped from: `https://www.cisco.com/c/en/us/support/docs/ip/express-forwarding-cef/13706-20.html`
 
 ### Introduction  
 
-There are a plethora of switching paths available to various Cisco routers and Cisco IOS® releases. Which is the best one for your network, and how do they all work? This white paper is an attempt to explain each of the following switching paths so you can make the best decision about which switching path fits your network. 
+There are a plethora of switching paths available to various Cisco routers and Cisco IOS® releases. Which is the best one for your network, and how do they all work? This white paper is an attempt to explain each of the following switching paths so you can make the best decision about which switching path fits your network.
 
 First, examine the forwarding process itself. There are three steps to forwarding a packet through a router:  
 
-Determine if the packet's destination is reachable. 
+Determine if the packet's destination is reachable.
 
 Determine the next hop toward the destination, and the interface through which that next hop is reachable. 
 

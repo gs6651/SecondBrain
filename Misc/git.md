@@ -14,6 +14,7 @@ git config --global user.email "email.com"
 git commit -m "Message Here"
 git push -u git@github.com:<repo>.git
 git clone: First-time, full copy.
+git clone --depth 1 git@github.com:<repo>.git ~/Documents/Foo/Bar # Will just clone the repo, not the history
 git fetch: Check for updates, store them, but don’t mix yet.
 git pull: Check for updates, store them, and update your files.
 git stash: Temporarily store all modified tracked files.

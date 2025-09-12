@@ -12,3 +12,14 @@ function prompt {
 ```
 - Reopen PowerShell (or VS Code Terminal)
 - ✌️
+
+
+## Starship for PowerShell
+
+- [Website](https://starship.rs/guide/)
+- Download Fira Code. [here](https://www.nerdfonts.com/)
+- Install Starship 
+  - `winget install --id Starship.Starship`
+- Set up your shell to use Starship
+  - Add the following to the end of your PowerShell configuration (find it by running $PROFILE)
+    - `Invoke-Expression (&starship init powershell)`

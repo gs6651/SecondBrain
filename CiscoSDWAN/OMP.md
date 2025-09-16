@@ -15,7 +15,7 @@
 
 ## Routes advertisement with OMP: (3 Types)
 
-- **OMP routes:** LAN routes. It can be [[OSPF]], [[BGP]], static or connected routes. These are redistributed into OMP and advertised towards the Controller. OMP routes resolve their next-hop to a [[TLOC]]. An OMP route is installed in the forwarding table only if the next-hop [[TLOC]] is known and there is a BFD session in UP state associated with that TLOC. By default, OMP only advertises the best route out of multiple equal ones. If no policy is applied, advertise all TLOCs to all WAN Edges. It carries below attributes:
+- **OMP routes:** LAN routes. It can be OSPF, BGP, static or connected routes. These are redistributed into OMP and advertised towards the Controller. OMP routes resolve their next-hop to a TLOC. An OMP route is installed in the forwarding table only if the next-hop TLOC is known and there is a BFD session in UP state associated with that TLOC. By default, OMP only advertises the best route out of multiple equal ones. If no policy is applied, advertise all TLOCs to all WAN Edges. It carries below attributes:
   - *VPN Number:* 1 -to- 65530 (except 512, reserved for OOBM).
   - *Originator*: System-IP of WAN Edge
   - *TLOC*: Next-Hop identifier of the OMP routes
@@ -93,5 +93,3 @@
 - Backup
 - ECMP
 - Strict (default)
-
-[[Cisco SDWAN]]

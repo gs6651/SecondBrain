@@ -1,7 +1,7 @@
 
 /**/.*  # ignore all dotted files
 /**/.*/ # ignore all dotted folders
-.obsidian/
+/api_secret_key.txt
 Z_Notes_ATT/
 !/.gitignore  # except `gitignore` :)
 

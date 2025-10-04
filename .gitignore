@@ -1,7 +1,7 @@
 
 /**/.*  # ignore all dotted files
 /**/.*/ # ignore all dotted folders
-/api_secret_key.txt
+KiteConnect/api_secret_key.txt
 Z_Notes_ATT/
 !/.gitignore  # except `gitignore` :)
 

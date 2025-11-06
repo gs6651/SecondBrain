@@ -9,15 +9,17 @@ git config --global user.email "email.com"
 ```
 
 ### New SSH key
+``` shell
 ssh-keygen -t ed25519 -C "your_email@example.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
+```
 
 ### Adding a new SSH key to your GitHub account
-cat ~/.ssh/id_ed25519.pub
+`cat ~/.ssh/id_ed25519.pub`
 
 ### Testing your SSH connection
-ssh -T git@github.com
+`ssh -T git@github.com`
 
 
 ## Git Commands

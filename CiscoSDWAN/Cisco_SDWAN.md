@@ -3,15 +3,6 @@
 
 ## Architecture
 
-### Validator (vBond)
-- This device acts as an 'authenticator'. Think of it as a Gatekeeper (Bar Analogy).
-- Orchestrates control & management plane
-- WAN Edges are pre-configured with Validator IPs. It exchanges certificates with WAN Edges. After successful authentication, shares the IPs of Manager & Controller.
-- Requires public IP reach-ability. Could sit behind 1:1 NAT.
-- Highly resilient.
-- Between Validator & WAN Edge there is a dynamic DTLS tunnel, which goes down after successful authentication.
-- Facilitates NAT-Traversal. Validator acts as a STUN Server: **S**ession **T**raversal **U**tilities for **N**AT
-
 ### Manager (vManage)
 - Management-Plane
 - Can be a Virtual Device (VM), On-Prem or Cloud Installation
@@ -25,10 +16,14 @@
 - To push config (especially Policies) to WAN Edges, it uses NETCONF APIs over DTLS Tunnels.
 - Validator is also configured via Manager. 💪
 
-### Analytics (vAnalytics)
-- An optional component of SD-WAN fabric and only available as a SaaS (same like O365).
-- Offers insights into the performance of applications and the underlying SD-WAN network infrastructure. e.g., link utilization, performance, delay etc.
-- Manager collects data from all WAN Edges and shares the raw data with Analytics, then it presents it in a better way.
+### Validator (vBond)
+- This device acts as an 'authenticator'. Think of it as a Gatekeeper (Bar Analogy).
+- Orchestrates control & management plane
+- WAN Edges are pre-configured with Validator IPs. It exchanges certificates with WAN Edges. After successful authentication, shares the IPs of Manager & Controller.
+- Requires public IP reach-ability. Could sit behind 1:1 NAT.
+- Highly resilient.
+- Between Validator & WAN Edge there is a dynamic DTLS tunnel, which goes down after successful authentication.
+- Facilitates NAT-Traversal. Validator acts as a STUN Server: **S**ession **T**raversal **U**tilities for **N**AT
 
 ### Controller (vSmart)
 - Control Plane. Brain of the SD-WAN.
@@ -44,6 +39,11 @@
 - Each WAN Edge is uniquely identified by its Chassis ID and serial number
 - Establishes permanent tunnels with Manager & Controller, but dynamic tunnels with Validator.
 - Tunnels to Controller are established via each available transport on WAN Edge.
+
+### Analytics (vAnalytics)
+- An optional component of SD-WAN fabric and only available as a SaaS (same like O365).
+- Offers insights into the performance of applications and the underlying SD-WAN network infrastructure. e.g., link utilization, performance, delay etc.
+- Manager collects data from all WAN Edges and shares the raw data with Analytics, then it presents it in a better way.
 
 ## Misc
 

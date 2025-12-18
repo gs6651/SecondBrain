@@ -39,10 +39,10 @@ Cisco SD-WAN Policies
 ### Day 2
 
 * [x] Controller Onboarding
-* [ ] WAN Edge Onboarding
-* [ ] Configurations using templates
-  * [ ] Feature Template
-  * [ ] Device Template
+* [x] WAN Edge Onboarding
+* [x] Configurations using templates
+  * [x] Feature Template
+  * [x] Device Template
 
 
 ### Day 3

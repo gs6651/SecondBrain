@@ -8,7 +8,7 @@
 
 
 
-### Manager (vManage)
+#### Manager (vManage)
 
 * Management-Plane
 * Can be a Virtual Device (VM), On-Prem or Cloud Installation
@@ -26,7 +26,7 @@
 
 
 
-### Validator (vBond)
+#### Validator (vBond)
 
 * This device acts as an 'authenticator'. Think of it as a Gatekeeper (Bar Analogy).
 * Orchestrates control \& management plane
@@ -38,7 +38,7 @@
 
 
 
-### Controller (vSmart)
+#### Controller (vSmart)
 
 * Control Plane. Brain of the SD-WAN.
 * Distributes control plane information to the WAN Edges using OMP tunnels. Also implements control plane policies such as service-chaining, multi-topology and multi-hop.
@@ -49,7 +49,7 @@
 
 
 
-### WAN Edge (vEdge)
+#### WAN Edge (vEdge)
 
 * Data-Plane
 * Communicates to Controller controllers using OMP to setup the Data Flow
@@ -59,7 +59,7 @@
 
 
 
-### Analytics (vAnalytics)
+#### Analytics (vAnalytics)
 
 * An optional component of SD-WAN fabric and only available as a SaaS (same like O365).
 * Offers insights into the performance of applications and the underlying SD-WAN network infrastructure. e.g., link utilization, performance, delay etc.
@@ -67,11 +67,11 @@
 
 
 
-## Misc.
+### Misc.
 
 
 
-### VPN\_0
+#### VPN\_0
 
 * Transport VPN, can neither be deleted or modified
 * The purpose is to enforce a separation between the WAN transport networks (the underlay) and network services (the overlay).
@@ -80,13 +80,13 @@
 
 
 
-### VPN\_512
+#### VPN\_512
 
 * Out of Band Management VPN (Management VRF)
 
 
 
-### Service VPN
+#### Service VPN
 
 * Where LAN is connected
 * Ranges between 1 -to- 65530 (except 512, reserved for OOBM). Depending on hardware or license can support a limited number of service VPNs.
@@ -94,21 +94,21 @@
 
 
 
-### Transport Side
+#### Transport Side
 
 * Controllers or WAN Edges side (interfaces) connected to the underlay/WAN network. Always VPN0.
 * Traffic typically tunneled / encrypted. In some special cases we need to specifically tell WAN Edges not to encrypt traffic but rather send it as native like in case of Direct Internet Access or split-tunnel.
 
 
 
-### Service Side
+#### Service Side
 
 * WAN Edge interfaces facing LAN
 * Traffic is forwarded as is from the original source
 
 
 
-### DTLS vs TLS
+#### DTLS vs TLS
 
 * Cisco SD WAN supports two Transport Layer Security protocols to provide end-to-end transport security
 * DTLS uses UDP and implements its own sequence numbers, offers fragment and re-transmissions because UDP does not guarantee reliable delivery of packets. DTLS is default, because it’s faster compared to TLS.
@@ -117,19 +117,19 @@
 
 
 
-### Gateway Tracking
+#### Gateway Tracking
 
 This feature that is enabled by default and can’t be stopped or modified. Each device probes using ARP the next-hop IP of each underlay static route every 10 seconds. If the device receives an ARP response, it maintains the static route in the VPN0’s routing table. If the device misses 10 consecutive ARP responses for a next-hop IP, the device removes the static route that points to this IP from the routing table.
 
 
 
-### NETCONF
+#### NETCONF
 
 Network management protocol to manage remote configurations. It works on the RPC layer (Remote Procedure Call) and uses XML or JSON for data encoding. Typically the protocol messages are exchanged over the TLS with mutual X.509 authentication.
 
 
 
-### Onboarding
+#### Onboarding
 
 Onboarding of the controllers, WAN edges needs below mandatory parameters
 
@@ -144,17 +144,16 @@ Onboarding of the controllers, WAN edges needs below mandatory parameters
 
 
 
+#### Certificates
 
+* Root Certificate
 
+  * Issued by the CA Server
 
+* ID Certificate
 
-
-
-
-
-
-
-
-
-
+  * Generate a CSR (Certificate Signing Request)
+  * Request a certificate from the CA Server
+  * CA Server will issue the ID Certificate
+  * Download and Install in vManage
 

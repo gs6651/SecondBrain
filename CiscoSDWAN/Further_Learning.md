@@ -1,15 +1,15 @@
+# Cisco\_SDWAN
 
-# Cisco_SDWAN
+* [ ] SD-WAN Start Here: BRKENT-2108
+* [ ] How to Choose the Correct Branch Router - [ ] BRKENT-2139
+* [ ] Analytics: BRKENT-2469
+* [ ] OMP: BRKENT-3115
+* [ ] MRF: BRKENT-2003
+* [ ] AAR: BRKENT-2043
+* [ ] Policies: 3797
+* [ ] ThousandEyes: 2126
+* [ ] SD-Routing: BRKENT-1039
 
-- [ ] SD-WAN Start Here: BRKENT-2108
-- [ ] How to Choose the Correct Branch Router - [ ] BRKENT-2139
-- [ ] Analytics: BRKENT-2469
-- [ ] OMP: BRKENT-3115
-- [ ] MRF: BRKENT-2003
-- [ ] AAR: BRKENT-2043
-- [ ] Policies: 3797
-- [ ] ThousandEyes: 2126
-- [ ] SD-Routing: BRKENT-1039
 
 
 Cisco SD-WAN Solution Components
@@ -20,37 +20,49 @@ Cisco SD-WAN Policies
 
 
 
-## Day 1
-- [x] SDN Overview
-- [x] SD-WAN Overview
-  - [x] Components
-    - [x] Controllers
-      - [x] Manager (vManage)
-      - [x] Validator (vBond)
-      - [x] Controller (vSmart)
-    - [x] WAN Edges
-    - [x] Transports
-    - [x] VPNs
-  - [x] Traffic Flows
+### Day 1
 
-## Day 2
-- [ ] Controller Onboarding
-- [ ] WAN Edge Onboarding
-- [ ] Configurations using templates
-  - [ ] Feature Template
-  - [ ] Device Template
+* [x] SDN Overview
+* [x] SD-WAN Overview
+  * [x] Components
+    * [x] Controllers
+      * [x] Manager (vManage)
+      * [x] Validator (vBond)
+      * [x] Controller (vSmart)
+    * [x] WAN Edges
+    * [x] Transports
+    * [x] VPNs
 
-## Day 3
-- [ ] Configuring Sub-Interfaces with WAN Edges
-- [ ] Configuring Centeralized Policies
-  - [ ] App Aware Routing (AAR)
-  - [ ] Control Policies (Topology Policies)
-  - [ ] Direct Internet Access (DIA)
-- [ ] Configuring TLOC Extensions
+  * [x] Traffic Flows
 
-## Day 4
-- [ ] Configuring a Multi-VPN Setup
-- [ ] Route Leaking
-  - [ ] Between Service VPNs
-  - [ ] Between Service VPNs and Global VPN
+
+### Day 2
+
+* [x] Controller Onboarding
+* [ ] WAN Edge Onboarding
+* [ ] Configurations using templates
+  * [ ] Feature Template
+  * [ ] Device Template
+
+
+### Day 3
+
+* [ ] Configuring Sub-Interfaces with WAN Edges
+* [ ] Configuring Centeralized Policies
+  * [ ] App Aware Routing (AAR)
+  * [ ] Control Policies (Topology Policies)
+  * [ ] Direct Internet Access (DIA)
+* [ ] Configuring TLOC Extensions
+
+
+### Day 4
+
+* [ ] Configuring a Multi-VPN Setup
+* [ ] Route Leaking
+  * [ ] Between Service VPNs
+  * [ ] Between Service VPNs and Global VPN
+
+
+
+
 

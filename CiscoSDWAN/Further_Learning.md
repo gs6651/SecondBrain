@@ -1,5 +1,5 @@
 
-# CiscoSDWAN
+# Cisco_SDWAN
 
 - [ ] SD-WAN Start Here: BRKENT-2108
 - [ ] How to Choose the Correct Branch Router - [ ] BRKENT-2139
@@ -22,16 +22,16 @@ Cisco SD-WAN Policies
 
 ## Day 1
 - [x] SDN Overview
-- [ ] SD-WAN Overview
-  - [ ] Components
+- [x] SD-WAN Overview
+  - [x] Components
     - [x] Controllers
       - [x] Manager (vManage)
       - [x] Validator (vBond)
       - [x] Controller (vSmart)
     - [x] WAN Edges
     - [x] Transports
-    - [ ] VPNs
-  - [ ] Traffic Flows
+    - [x] VPNs
+  - [x] Traffic Flows
 
 ## Day 2
 - [ ] Controller Onboarding

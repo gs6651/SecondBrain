@@ -1,9 +1,11 @@
 # Cisco SDWAN
 
 
+
 ## Architecture
 
 * Components of Cisco SDWAN and how they connects and functions with each other.
+
 
 
 ### Manager (vManage)
@@ -23,6 +25,7 @@
 * Validator is also configured via Manager. 💪
 
 
+
 ### Validator (vBond)
 
 * This device acts as an 'authenticator'. Think of it as a Gatekeeper (Bar Analogy).
@@ -32,6 +35,7 @@
 * Highly resilient.
 * Between Validator \& WAN Edge there is a dynamic DTLS tunnel, which goes down after successful authentication.
 * Facilitates NAT-Traversal. Validator acts as a STUN Server: **S**ession **T**raversal **U**tilities for **N**AT
+
 
 
 ### Controller (vSmart)
@@ -44,6 +48,7 @@
 * WAN Edges talks to Controller, but not with each other. It acts as a Route-Reflector and does not participate in Data-Plane, which means if you’re on WAN Edge #1, and look for a route from WAN Edge #2, next hop would be WAN Edge #2 and not Controller.
 
 
+
 ### WAN Edge (vEdge)
 
 * Data-Plane
@@ -53,6 +58,7 @@
 * Tunnels to Controller are established via each available transport on WAN Edge.
 
 
+
 ### Analytics (vAnalytics)
 
 * An optional component of SD-WAN fabric and only available as a SaaS (same like O365).
@@ -60,7 +66,9 @@
 * Manager collects data from all WAN Edges and shares the raw data with Analytics, then it presents it in a better way.
 
 
-## Misc
+
+## Misc.
+
 
 
 ### VPN\_0
@@ -71,9 +79,11 @@
 * Template deployment traffic between Manager \& WAN Edges.
 
 
+
 ### VPN\_512
 
-* Out of Band Mgmt VPN (Mgmt VRF)
+* Out of Band Management VPN (Management VRF)
+
 
 
 ### Service VPN
@@ -83,16 +93,19 @@
 * E.g., Data users in VPN 10, Voice Users in VPN 11. It's a kind of segments in the VeloCloud world.
 
 
+
 ### Transport Side
 
 * Controllers or WAN Edges side (interfaces) connected to the underlay/WAN network. Always VPN0.
 * Traffic typically tunneled / encrypted. In some special cases we need to specifically tell WAN Edges not to encrypt traffic but rather send it as native like in case of Direct Internet Access or split-tunnel.
 
 
+
 ### Service Side
 
 * WAN Edge interfaces facing LAN
 * Traffic is forwarded as is from the original source
+
 
 
 ### DTLS vs TLS
@@ -103,12 +116,45 @@
 * Both are used between Manager, Controller \& Validator and they use protocol NETCONF for communication with each other.
 
 
+
 ### Gateway Tracking
 
 This feature that is enabled by default and can’t be stopped or modified. Each device probes using ARP the next-hop IP of each underlay static route every 10 seconds. If the device receives an ARP response, it maintains the static route in the VPN0’s routing table. If the device misses 10 consecutive ARP responses for a next-hop IP, the device removes the static route that points to this IP from the routing table.
 
 
+
 ### NETCONF
 
 Network management protocol to manage remote configurations. It works on the RPC layer (Remote Procedure Call) and uses XML or JSON for data encoding. Typically the protocol messages are exchanged over the TLS with mutual X.509 authentication.
+
+
+
+### Onboarding
+
+Onboarding of the controllers, WAN edges needs below mandatory parameters
+
+* System Config
+
+  * Hostname
+  * Organization Name
+  * System IP (Like Router IP, not needed to be reachable, but to identify in the network)
+  * Site ID
+  * vBond IP
+  * Clock Time zone (Not mandatory, but important)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

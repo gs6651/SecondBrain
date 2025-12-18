@@ -139,7 +139,7 @@ Onboarding of the controllers, WAN edges needs below mandatory parameters
   * Organization Name
   * System IP (Like Router IP, not needed to be reachable, but to identify in the network)
   * Site ID
-  * vBond IP
+  * vBond IP or FQDN
   * Clock Time zone (Not mandatory, but important)
 
 

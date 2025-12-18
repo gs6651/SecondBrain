@@ -24,9 +24,12 @@ Cisco SD-WAN Policies
 - [x] SDN Overview
 - [ ] SD-WAN Overview
   - [ ] Components
-    - [ ] Controllers
-    - [ ] WAN Edges
-    - [ ] Transports
+    - [x] Controllers
+      - [x] Manager (vManage)
+      - [x] Validator (vBond)
+      - [x] Controller (vSmart)
+    - [x] WAN Edges
+    - [x] Transports
     - [ ] VPNs
   - [ ] Traffic Flows
 

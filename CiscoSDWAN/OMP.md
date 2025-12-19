@@ -57,6 +57,7 @@
 - The `omp ecmp-limit <5>` parameter defines the maximum number of best paths that can be installed in the routing table.
 - The `controller-send-path-limit` defines the maximum number of best-paths that a Controller can advertise to another Controller.
 - The `omp send-backup-paths` tell Controller to advertise the first set of non-best routes.
+- OSPF 'O' routes or 'O-IA' routes gets redistributed directly into OSPF, but not the other way. We need a template to redistribute OMP routes into OSPF, EIGRP, ISIS etc.
 
 ## OMP Best-Path Selection
 

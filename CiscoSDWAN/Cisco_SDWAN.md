@@ -189,7 +189,7 @@ Onboarding of the controllers, WAN edges needs below mandatory parameters
 
 
 ### Feature Template
-### 
+### Device Template
 
 
 

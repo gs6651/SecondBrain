@@ -5,5 +5,5 @@
   - of: specifies the output file (your USB drive).
   - bs=4M: sets the block size to 4 megabytes for faster writing.
   - status=progress: shows the progress of the writing process (available in newer versions of dd).
-- `sync`    # to ensure all data in sync
+- `sync`    # to ensure all data in sync. If successful, This will not return anything
 
